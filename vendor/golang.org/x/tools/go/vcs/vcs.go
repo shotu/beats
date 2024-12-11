@@ -1,4 +1,4 @@
-// Copyright 2012 The Go Authors.  All rights reserved.
+// Copyright 2012 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -6,12 +6,17 @@
 // and using version control systems, which can be used to
 // implement behavior similar to the standard "go get" command.
 //
-// This package is a copy of internal code in package cmd/go/internal/get,
-// modified to make the identifiers exported. It's provided here
-// for developers who want to write tools with similar semantics.
-// It needs to be manually kept in sync with upstream when changes are
-// made to cmd/go/internal/get; see https://golang.org/issue/11490.
+// Deprecated: Use the go list command with -json flag instead,
+// which implements up-to-date import path resolution behavior,
+// module support, and includes the latest security fixes.
 //
+// This package was a copy of internal code in package cmd/go/internal/get
+// before module support, modified to make the identifiers exported.
+// It was provided here for developers who wanted to write tools with similar semantics.
+// It needed to be manually kept in sync with upstream when changes were
+// made to cmd/go/internal/get, as tracked in go.dev/issue/11490.
+// By now, it has diverged significantly from upstream cmd/go/internal/get
+// behavior and will not receive any further updates.
 package vcs // import "golang.org/x/tools/go/vcs"
 
 import (
@@ -19,10 +24,10 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	exec "golang.org/x/sys/execabs"
 	"log"
 	"net/url"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strconv"
